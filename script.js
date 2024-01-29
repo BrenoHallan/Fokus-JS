@@ -1,3 +1,5 @@
+let ok = 'ok'
+
 const html = document.querySelector('html')
 const focoBt = document.querySelector('.app__card-button--foco')
 const curtoBt = document.querySelector('.app__card-button--curto')
@@ -11,7 +13,7 @@ const botaoIniciarPausar = document.getElementById('start-pause')
 let intervaloId = null
 
 
-//musica -- no meu codigo nao funcionou.. mas enfim, isso aí.
+
 const musicaFocoInput = document.querySelector('#alternar-musica')
 const musica = new Audio('/sons/luna-rise-part-one.mp3')
 musica.loop = true
@@ -66,7 +68,7 @@ function alterarContexto(contexto) {
   }
 }
 
-//temporizador impossível de se fazer ... caramba mano, isso é difícil demais kkkkk
+
 function contagemRegressiva() {
   tempoEmSegundos -= 1
   console.log('tempo: ' + tempoEmSegundos)
