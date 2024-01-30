@@ -6,11 +6,9 @@ const banner = document.querySelector('.app__image')
 const titulo = document.querySelector('.app__title')
 const botoes = document.querySelectorAll('.app__card-button')
 
-let tempoEmSegundos = 5
-const botaoIniciarPausar = document.getElementById('start-pause')
-let intervaloId = null
-
-
+let tempo_Segundos = 5
+let tempoId = null
+const startAndPauseBt = document.getElementById('start-pause')
 
 const musicaFocoInput = document.querySelector('#alternar-musica')
 const musica = new Audio('/sons/luna-rise-part-one.mp3')
@@ -67,23 +65,29 @@ function alterarContexto(contexto) {
 }
 
 
-function contagemRegressiva() {
-  tempoEmSegundos -= 1
-  console.log('tempo: ' + tempoEmSegundos)
-
-  if (tempoEmSegundos <= 0){
-    zerarContagem()
-    alert('Tempo finalizado')
+const contagemRegressiva = () => {
+  tempo_Segundos -= 1
+  if (tempo_Segundos <= 0) {
+    zerarTempo()
+    alert('tempo finalizado')
+    return
   }
+  
+  console.log('tempo: ' + tempo_Segundos + ' segundos')
+  //tambem pode usar `${}` para fazer concatenacao.
 }
 
-botaoIniciarPausar.addEventListener('click', iniciar)
+startAndPauseBt.addEventListener('click', iniciar)
 
 function iniciar() {
-  intervaloId = setInterval(contagemRegressiva, 1000)
+  if (tempoId) {
+    zerarTempo()
+    return
+  }
+  tempoId = setInterval(contagemRegressiva, 1000)
 }
 
-function zerarContagem() {
-  clearInterval(intervaloId)
-  intervaloId = null
+function zerarTempo() {
+  clearInterval(tempoId)
+  tempoId = null
 }
